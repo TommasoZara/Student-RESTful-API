@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tommaso\\source\\repos\\API\\API\\API.csproj": {}
+    "C:\\Progetti\\Unimi SOA Api\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tommaso\\source\\repos\\API\\API\\API.csproj": {
+    "C:\\Progetti\\Unimi SOA Api\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tommaso\\source\\repos\\API\\API\\API.csproj",
+        "projectUniqueName": "C:\\Progetti\\Unimi SOA Api\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\Tommaso\\source\\repos\\API\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\Tommaso\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tommaso\\source\\repos\\API\\API\\obj\\",
+        "projectPath": "C:\\Progetti\\Unimi SOA Api\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\zaran\\.nuget\\packages\\",
+        "outputPath": "C:\\Progetti\\Unimi SOA Api\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -19,7 +19,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Tommaso\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\zaran\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -29,7 +29,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -61,6 +61,12 @@
               "target": "Package",
               "version": "[5.0.9, )"
             },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
@@ -88,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

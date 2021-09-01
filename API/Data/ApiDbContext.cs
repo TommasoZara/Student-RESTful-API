@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using API.Helpers;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,13 @@ namespace API.Data
         public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
         {
 
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasData(new User[] {
+                new User{Id=1, FirstName="Tommaso", LastName="Zarantonello", Password="Zarantonello".CreateMD5(), Username="Tommaso"},
+            });
         }
     }
 }

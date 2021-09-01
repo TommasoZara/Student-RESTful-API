@@ -1,6 +1,7 @@
 using API;
 using API.Services;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -15,16 +16,19 @@ namespace API.Helpers
     {
         private readonly RequestDelegate _next;
         private readonly AppSettings _appSettings;
+        private readonly ILogger<JwtMiddleware> _logger;
 
-        public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings)
+
+        public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings, ILogger<JwtMiddleware> logger)
         {
             _next = next;
             _appSettings = appSettings.Value;
+            _logger = logger;
         }
 
         public async Task Invoke(HttpContext context, IUserService userService)
         {
-            var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+            var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ")?.Last();
 
             if (token != null)
                 attachUserToContext(context, userService, token);
@@ -36,7 +40,7 @@ namespace API.Helpers
         {
             try
             {
-                var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+                var key = Encoding.ASCII.GetBytes(_appSettings?.Secret);
 
                 new JwtSecurityTokenHandler()
                     .ValidateToken(token, new TokenValidationParameters
@@ -45,19 +49,19 @@ namespace API.Helpers
                             IssuerSigningKey = new SymmetricSecurityKey(key),
                             ValidateIssuer = false,
                             ValidateAudience = false,
-                            ClockSkew = TimeSpan.Zero                                   //--- differenza oraria massima consentita tra le impostazioni dell'orologio client e server
+                            ClockSkew = TimeSpan.Zero                                           //--- differenza oraria massima consentita tra le impostazioni dell'orologio client e server
                         }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 var userId = int.Parse(jwtToken?.Claims?.First(x => x.Type == "id")?.Value);
 
-                // attach user to context on successful jwt validation
-                context.Items["User"] = userService.GetById(userId);
+                context.Items["User"] = userService.GetById(userId);                            //--- Rispondo con l'utente completo che si è loggato
             }
-            catch
+            catch(Exception ex)
             {
-
+                _logger.LogError(ex, nameof(JwtMiddleware));
             }
+
         }
     }
 }

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Entities\Game.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Services\DataService.cs~RF19b8fe0e.TMP" />
   </ItemGroup>
 

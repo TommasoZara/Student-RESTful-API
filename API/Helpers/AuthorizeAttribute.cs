@@ -1,4 +1,5 @@
 using API;
+using API.Entities;
 using API.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

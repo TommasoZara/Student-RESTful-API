@@ -1,4 +1,5 @@
-﻿using API.Helpers;
+﻿using API.Entities;
+using API.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,17 +11,60 @@ namespace API.Data
     public class ApiDbContext : DbContext
     {
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Instructor> Instructors { get; set; }
+        public virtual DbSet<Exam> Exams { get; set; }
+
+
         public ApiDbContext(DbContextOptions<ApiDbContext> options) : base(options)
         {
 
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(new User[] {
-                //new User{Id=1, FirstName="Tommaso", LastName="Zarantonello", Password="Zarantonello", Username="Tommaso"},
-                new User("Tom", "Zara".CreateMD5(), "Tommaso", "Zarantonello", new DateTime(1999, 2, 21), "ITA" ),
+            modelBuilder.Entity<Exam>().ToTable("Exam");
+            modelBuilder.Entity<Student>().ToTable("Student");
+            modelBuilder.Entity<Instructor>().ToTable("Instructor");
+            modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<StudentExam>().HasKey(t => new { t.StudentId, t.ExamId });
+
+
+            modelBuilder.Entity<StudentExam>()
+                            .HasOne(pt => pt.Student)
+                            .WithMany(p => p.Exams)
+                            .HasForeignKey(pt => pt.StudentId);
+
+            modelBuilder.Entity<StudentExam>()
+                            .HasOne(pt => pt.Exam)
+                            .WithMany(t => t.Students)
+                            .HasForeignKey(pt => pt.ExamId);
+
+
+            modelBuilder.Entity<Exam>().HasData(new Exam[] {
+                new Exam(){ Id = 1, DateOfTest = new DateTime(2021, 9, 10, 8, 20, 0), DurationMinutes=60, Topic="SICUREZZA DELLE ARCHITETTURE ORIENTATE AI SERVIZI" },
+                new Exam(){ Id = 2, DateOfTest = new DateTime(2020, 2, 12, 7, 0, 0), DurationMinutes=120, Topic="SICUREZZA DEI SISTEMI E DELLE RETI" },
+                new Exam(){ Id = 3, DateOfTest = new DateTime(2020, 12, 21, 18, 0, 0), DurationMinutes=90, Topic="RETI DI CALCOLATORI	" }
             });
+
+            modelBuilder.Entity<Student>().HasData(new Student[] {
+                new Student(){Id = 1, Username= "Tom", Password= "Zara".ToMD5(), FirstName = "Tommaso", LastName = "Zarantonello", DateOfBirth =  new DateTime(1999, 2, 21), Nationality =  "ITA", College =  "Unimi",  StudentCode = 12345 }
+            });
+
+            modelBuilder.Entity<Instructor>().HasData(new Instructor[] {
+                new Instructor() {Id = 2, Username = "Prof1", Password = "Pwd".ToMD5(), FirstName = "InstructorName", LastName = "InstructorLastName", DateOfBirth = new DateTime(1969, 7, 22), Nationality = "ITA", HireDate = new DateTime(1999, 6, 10), Course = "SICUREZZA DELLE ARCHITETTURE ORIENTATE AI SERVIZI"}
+            });
+
+            modelBuilder.Entity<StudentExam>().HasData(new StudentExam[] { 
+                new StudentExam(){ ExamId = 1, StudentId = 1, Vote = 30 },
+                new StudentExam(){ ExamId = 2, StudentId = 1, Vote = 28 },
+            });
+
         }
+
     }
 }

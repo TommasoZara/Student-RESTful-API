@@ -1,3 +1,5 @@
+using API.Entities;
+
 namespace API
 {
     public class AuthenticateResponse

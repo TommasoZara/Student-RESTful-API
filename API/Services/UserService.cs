@@ -1,5 +1,6 @@
 using API;
 using API.Data;
+using API.Entities;
 using API.Helpers;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -33,7 +34,7 @@ namespace API.Services
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
-            var user = GetAll()?.SingleOrDefault(x => x.Username == model.Username && x.Password == model?.Password?.CreateMD5());
+            var user = GetAll()?.SingleOrDefault(x => x.Username == model.Username && x.Password == model?.Password?.ToMD5());
 
             if (user == null) //--- se non trovo niente esco 
                 return null;

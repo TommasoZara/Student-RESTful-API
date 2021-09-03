@@ -10,7 +10,7 @@ namespace API.Helpers
     public static class Extensions
     {
 
-        public static string CreateMD5(this String input)
+        public static string ToMD5(this String input)
         {
             // Use input string to calculate MD5 hash
             using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
@@ -62,6 +62,9 @@ namespace API.Helpers
                     break;
             }
             
+            if(string.IsNullOrWhiteSpace(msg))
+               return $"Error! {input} 😡";
+
             return msg;
         }
     }

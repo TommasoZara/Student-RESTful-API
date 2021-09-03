@@ -13,9 +13,12 @@ namespace API
             LastName = lastName;
             DateOfBirth = dateOfBirth;
             Nationality = nationality;
+            
+            Username = username;
+            Password = password;
         }
 
-        public int Id { get; set; }
+        public int Id { get; set; } = -1;
 
         [Required]
         [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]

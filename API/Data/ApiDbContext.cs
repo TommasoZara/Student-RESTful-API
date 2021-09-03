@@ -18,7 +18,8 @@ namespace API.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(new User[] {
-                new User{Id=1, FirstName="Tommaso", LastName="Zarantonello", Password="Zarantonello".CreateMD5(), Username="Tommaso"},
+                //new User{Id=1, FirstName="Tommaso", LastName="Zarantonello", Password="Zarantonello", Username="Tommaso"},
+                new User("Tom", "Zara".CreateMD5(), "Tommaso", "Zarantonello", new DateTime(1999, 2, 21), "ITA" ),
             });
         }
     }

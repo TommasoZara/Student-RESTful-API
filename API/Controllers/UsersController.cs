@@ -1,8 +1,9 @@
 ﻿using API;
 using API.Data;
+using API.Helpers;
 using API.Services;
 using Microsoft.AspNetCore.Mvc;
-
+using static API.Enums;
 
 namespace API.Controllers
 {
@@ -23,10 +24,10 @@ namespace API.Controllers
             var response = _userService.Authenticate(model);
 
             if (response == null)
-                return BadRequest(new 
-                { 
-                    message = "Username or password is incorrect" 
-                });
+                return BadRequest(new
+                {
+                    message = ErrorCode.InvalidCredential.GetMessage()
+                }); ;
 
             return Ok(response);
         }

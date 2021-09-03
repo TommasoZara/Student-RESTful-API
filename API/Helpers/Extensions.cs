@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static API.Enums;
 
 namespace API.Helpers
 {
@@ -27,5 +28,41 @@ namespace API.Helpers
             }
         }
 
+        public static string GetMessage(this ErrorCode input)
+        {
+            var msg = "";
+            switch (input)
+            {
+                case ErrorCode.RequiredOtherFields:
+                    msg = "";
+                    break;
+                case ErrorCode.IDInUse:
+                    msg = "";
+                    break;
+                case ErrorCode.RecordNotFound:
+                    msg = "";
+                    break;
+                case ErrorCode.CouldNotCreate:
+                    msg = "";
+                    break;
+                case ErrorCode.CouldNotUpdate:
+                    msg = "";
+                    break;
+                case ErrorCode.CouldNotDelete:
+                    msg = "";
+                    break;
+                case ErrorCode.Unauthorized:
+                    msg = "you are not authorized! 😱";
+                    break;
+                case ErrorCode.InvalidCredential:
+                    msg = "Username or password is incorrect 😱";
+                    break;
+                default:
+                    msg = $"Error! {input} 😡";
+                    break;
+            }
+            
+            return msg;
+        }
     }
 }

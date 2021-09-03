@@ -8,7 +8,20 @@ namespace API
 {
     public class Enums
     {
-        public enum Status { Ready, InProgress, Finish } 
+        public enum Status { Ready, InProgress, Finish }
+
+        public enum ErrorCode
+        {
+            RequiredOtherFields, 
+            IDInUse,  
+            RecordNotFound, 
+            CouldNotCreate, 
+            CouldNotUpdate, 
+            CouldNotDelete,
+            Unauthorized,
+            InvalidCredential
+        }
+
 
     }
 }

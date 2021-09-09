@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using static API.Enums;
@@ -12,27 +13,27 @@ namespace API.Helpers
 
         public static string ToMD5(this String input)
         {
-            // Use input string to calculate MD5 hash
-            using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
+            using (MD5 md5 = MD5.Create())
             {
                 byte[] inputBytes = Encoding.ASCII.GetBytes(input);
                 byte[] hashBytes = md5.ComputeHash(inputBytes);
 
-                // Convert the byte array to hexadecimal string
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < hashBytes.Length; i++)
-                {
-                    sb.Append(hashBytes[i].ToString("X2"));
-                }
+                    sb.Append(hashBytes[i].ToString("X2"));     //--- formattazione in esadecimale
+                
                 return sb.ToString();
             }
         }
 
-        public static string GetMessage(this ErrorCode input)
+        public static string ToMessage(this ErrorCode input)
         {
             var msg = "";
             switch (input)
             {
+                case ErrorCode.InvalidExam: 
+                    msg = "Invalid Date/duration/topic of exam 😱";
+                    break;
                 case ErrorCode.RequiredOtherFields:
                     msg = "";
                     break;

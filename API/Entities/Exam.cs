@@ -9,13 +9,7 @@ namespace API.Entities
     public class Exam
     {
 
-        //public Exam(int timeMinutes, string topic)
-        //{
-        //    DurationMinutes = timeMinutes;
-        //    Topic = topic;
-        //}
-
-        public int Id { get; set; } = -1;
+        public int Id { get; set; }
 
         [Required]
         [Display(Name = "The exam duration in minutes")]
@@ -32,6 +26,13 @@ namespace API.Entities
         public DateTime DateOfTest { get; set; }
 
 
+        //--- relation stuff      
+        public int InstructorId { get; set; }
+        public Instructor Instructor { get; set; }
         public ICollection<StudentExam> Students { get; set; }
+
+
+        public bool IsValid() => !(DurationMinutes < 30 || DurationMinutes > 240 || string.IsNullOrWhiteSpace(Topic) || DateOfTest < DateTime.Now.AddDays(30) || InstructorId < 0);
+
     }
 }

@@ -22,6 +22,7 @@ namespace API.Entities
         public DateTime HireDate { get; set; }
 
         public string Course { get; set; }
+
         public ICollection<Exam> Exams { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace API.Controllers
             if (response == null)
                 return BadRequest(new
                 {
-                    message = ErrorCode.InvalidCredential.GetMessage()
+                    message = ErrorCode.InvalidCredential.ToMessage()
                 }); ;
 
             return Ok(response);

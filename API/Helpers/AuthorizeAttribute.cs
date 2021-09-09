@@ -16,7 +16,7 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
         if (user == null)
         {
             //--- utente non loggato 
-            context.Result = new JsonResult(new { message = ErrorCode.Unauthorized.GetMessage() }) 
+            context.Result = new JsonResult(new { message = ErrorCode.Unauthorized.ToMessage() }) 
             { 
                 StatusCode = StatusCodes.Status401Unauthorized 
             };

@@ -9,20 +9,15 @@ While we know that the data stored in SqlLite is a series of tuples, its represe
 
 ## Use Cases
 
-The main purpose of this project is develop an API RESTful that shows how 
-which objectives (or aims) should focus on provide 
-
-There are many reasons to use the Student-RESTful-API. The most common use case is to gather report information for a given campaign, so that you can build custom reports in software you're most familiar with, such as Excel or Numbers.
-
-However, automating the creation of campaigns and campaign attributes such as templates, landing pages, and more provides the ability to create a fully automated phishing simulation program. This would allow campaigns to be run throughout the year automatically. This also allows the Student-RESTful-API administrator to be included in the campaigns, since they wouldn't know exactly which day it would start!
+The main purpose of this project is develop an API RESTful and shows how it works.
 
 ## Building a sample
 
 Build any .NET Core sample using the .NET Core CLI, which is installed with [the .NET Core SDK](https://www.microsoft.com/net/download). 
-Then run these commands from the CLI in the directory of any sample:
+Then run these commands from the CLI in the project root folder (where the API.csproj file is located):
 
 ```console
-cd .\API\
+cd .\API\  --> navigate into the root folder
 dotnet ef migrations add MyMigration
 dotnet ef database update
 ```
@@ -31,7 +26,7 @@ These will compares the current state of the model with the previous migration i
 
 Secondly, will EF will create the database and create the schema from the migration 
 
-Now start the api by running dotnet run from the command line in the project root folder (where the API.csproj file is located), you should see the message ```Now listening on: http://localhost:8080```
+Now start the api by running dotnet run from the command line, you should see the message ```Now listening on: http://localhost:8080```
 
 ```console
 dotnet build
@@ -40,7 +35,7 @@ dotnet run
 
 These will install any needed dependencies, build the project, and run the project respectively.
 
-Import the ... for test out with Postman 
+[//]: # Import the ... for test out with Postman
 
 ## Authorization
 

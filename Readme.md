@@ -25,7 +25,7 @@ dotnet ef database update
 
 These will compares the current state of the model with the previous migration if one exists and generates a file containing a class inheriting from Microsoft.EntityFrameworkCore.Migrations.Migration featuring an Up and a Down method. The class is given the same name as you specified for the migration. The file name itself is the name of the migration prefixed with a timestamp.
 
-Secondly, will EF will create the database and create the schema from the migration 
+Secondly, EF will create the database and create the schema from the migration 
 
 Now start the api by running dotnet run from the command line, you should see the message ```Now listening on: http://localhost:8080```
 

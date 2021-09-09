@@ -1,18 +1,20 @@
 # Introduction
 
-XXX is an HTTP REST API based on the typical client/server paradigm.
+
+Student-RESTful-API is an HTTP REST API based on the typical client/server paradigm.
 It allows a consumer to request and manipulate Student/Instructor/Exam resources via a uniform HTTP interface.
-At its heart XXX is a stateless web service that computes HTTP requests against the /api/v1/XXX URI.
+At its heart Student-RESTful-API is a stateless web service that computes HTTP requests against the _/api/v1/Student-RESTful-API_ URI.
 The desired resource manipulation can be achieved by specifying one of the four HTTP methods supported.
 While we know that the data stored in SqlLite is a series of tuples, its representation is conceptually independent from the one returned to the client, which is in JSON.
 
 ## Use Cases
 
-The main purpose of this project is develop an API RESTful which objectives (or aims) should focus on provide 
+The main purpose of this project is develop an API RESTful that shows how 
+which objectives (or aims) should focus on provide 
 
-There are many reasons to use the XXX. The most common use case is to gather report information for a given campaign, so that you can build custom reports in software you're most familiar with, such as Excel or Numbers.
+There are many reasons to use the Student-RESTful-API. The most common use case is to gather report information for a given campaign, so that you can build custom reports in software you're most familiar with, such as Excel or Numbers.
 
-However, automating the creation of campaigns and campaign attributes such as templates, landing pages, and more provides the ability to create a fully automated phishing simulation program. This would allow campaigns to be run throughout the year automatically. This also allows the XXX administrator to be included in the campaigns, since they wouldn't know exactly which day it would start!
+However, automating the creation of campaigns and campaign attributes such as templates, landing pages, and more provides the ability to create a fully automated phishing simulation program. This would allow campaigns to be run throughout the year automatically. This also allows the Student-RESTful-API administrator to be included in the campaigns, since they wouldn't know exactly which day it would start!
 
 ## Building a sample
 
@@ -20,6 +22,7 @@ Build any .NET Core sample using the .NET Core CLI, which is installed with [the
 Then run these commands from the CLI in the directory of any sample:
 
 ```console
+cd .\API\
 dotnet ef migrations add MyMigration
 dotnet ef database update
 ```
@@ -28,7 +31,7 @@ These will compares the current state of the model with the previous migration i
 
 Secondly, will EF will create the database and create the schema from the migration 
 
-Now start the api by running dotnet run from the command line in the project root folder (where the XXXX.csproj file is located), you should see the message ```Now listening on: http://localhost:8080```
+Now start the api by running dotnet run from the command line in the project root folder (where the API.csproj file is located), you should see the message ```Now listening on: http://localhost:8080```
 
 ```console
 dotnet build
@@ -41,7 +44,7 @@ Import the ... for test out with Postman
 
 ## Authorization
 
-All API requests require the use of a generated API key. You can find your API key, or generate a new one, by navigating to the /settings endpoint, or clicking the ìSettingsî sidebar item.
+All API requests require the use of a generated API key. You can find your API key, or generate a new one, by navigating to the /settings endpoint, or clicking the ‚ÄúSettings‚Äù sidebar item.
 
 To authenticate an API request, you should provide your API key in the `Authorization` header.
 

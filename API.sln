@@ -8,7 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{980F4668-06B0-4380-9917-A1B9FDE77A0A}"
 	ProjectSection(SolutionItems) = preProject
 		Readme.md = Readme.md
-		..\..\Users\zaran\Downloads\Unimi_SOA_Api.postman_collection.json = ..\..\Users\zaran\Downloads\Unimi_SOA_Api.postman_collection.json
+		Unimi_SOA_Api.postman_collection.json = Unimi_SOA_Api.postman_collection.json
 	EndProjectSection
 EndProject
 Global

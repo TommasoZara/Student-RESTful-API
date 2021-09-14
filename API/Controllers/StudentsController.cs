@@ -114,7 +114,7 @@ namespace API.Controllers
 
         private bool StudentsExists(int id) => _dbContext.Students.Any(e => e.Id == id);
         private async Task Save() => await _dbContext?.SaveChangesAsync();
-        private async Task<Student> Find(int id) => await Find(id);
+        private async Task<Student> Find(int id) => await _dbContext.Students.FindAsync(id);
 
     }
 }

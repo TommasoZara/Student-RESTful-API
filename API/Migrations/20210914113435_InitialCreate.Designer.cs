@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20210903224151_ManyToManyWithData")]
-    partial class ManyToManyWithData
+    [Migration("20210914113435_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,7 @@ namespace API.Migrations
                     b.Property<int>("DurationMinutes")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("InstructorId")
+                    b.Property<int>("InstructorId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Topic")
@@ -50,6 +50,7 @@ namespace API.Migrations
                             Id = 1,
                             DateOfTest = new DateTime(2021, 9, 10, 8, 20, 0, 0, DateTimeKind.Unspecified),
                             DurationMinutes = 60,
+                            InstructorId = 5,
                             Topic = "SICUREZZA DELLE ARCHITETTURE ORIENTATE AI SERVIZI"
                         },
                         new
@@ -57,6 +58,7 @@ namespace API.Migrations
                             Id = 2,
                             DateOfTest = new DateTime(2020, 2, 12, 7, 0, 0, 0, DateTimeKind.Unspecified),
                             DurationMinutes = 120,
+                            InstructorId = 5,
                             Topic = "SICUREZZA DEI SISTEMI E DELLE RETI"
                         },
                         new
@@ -64,7 +66,8 @@ namespace API.Migrations
                             Id = 3,
                             DateOfTest = new DateTime(2020, 12, 21, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             DurationMinutes = 90,
-                            Topic = "RETI DI CALCOLATORI	"
+                            InstructorId = 4,
+                            Topic = "RETI DI CALCOLATORI"
                         });
                 });
 
@@ -151,15 +154,27 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 2,
+                            Id = 4,
                             DateOfBirth = new DateTime(1969, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "InstructorName",
-                            LastName = "InstructorLastName",
+                            FirstName = "Mario",
+                            LastName = "Rossi",
                             Nationality = "ITA",
                             Password = "A8CE55AB5C4CAFCF959B534FF5BB8DCF",
-                            Username = "Prof1",
+                            Username = "MarioR",
                             Course = "SICUREZZA DELLE ARCHITETTURE ORIENTATE AI SERVIZI",
                             HireDate = new DateTime(1999, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DateOfBirth = new DateTime(1978, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Paolo",
+                            LastName = "Bianchi",
+                            Nationality = "ITA",
+                            Password = "A8CE55AB5C4CAFCF959B534FF5BB8DCF",
+                            Username = "Paolo",
+                            Course = "SISTEMI BIOMETRIFCI",
+                            HireDate = new DateTime(2000, 2, 21, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -196,9 +211,13 @@ namespace API.Migrations
 
             modelBuilder.Entity("API.Entities.Exam", b =>
                 {
-                    b.HasOne("API.Entities.Instructor", null)
+                    b.HasOne("API.Entities.Instructor", "Instructor")
                         .WithMany("Exams")
-                        .HasForeignKey("InstructorId");
+                        .HasForeignKey("InstructorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instructor");
                 });
 
             modelBuilder.Entity("API.Entities.StudentExam", b =>
